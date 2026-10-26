@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Чаты клиентов — Автосервис Тетерино</title><link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/css/admin.css"></head>
+<body>
+<header class="top"><strong>Чаты клиентов</strong><a href="/">На сайт</a></header>
+<div class="layout" id="layout">
+  <aside class="side"><ul id="chats" class="chats"></ul><p id="empty" class="empty" hidden>Пока нет обращений</p></aside>
+  <section class="conv" id="conv" hidden>
+    <header class="conv__head"><button type="button" id="back" class="back" aria-label="К списку">←</button><div><strong id="c-name"></strong><div id="c-phone" class="sub"></div></div></header>
+    <div class="msgs" id="msgs" aria-live="polite"></div>
+    <form class="reply" id="reply"><input id="text" type="text" maxlength="1000" placeholder="Ответ клиенту" autocomplete="off" required><button type="submit">Отправить</button></form>
+  </section>
+</div>
+<script src="/js/admin.js" defer></script>
+</body></html>

@@ -1,0 +1,9 @@
+{
+  "name": "avtoservis-teterino",
+  "version": "1.0.0",
+  "description": "Сайт автосервиса и автоцентра, д. Тетерино, Можайский район",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=22.5" },
+  "private": true
+}

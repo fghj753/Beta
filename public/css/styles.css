@@ -1,0 +1,172 @@
+/* Автосервис Тетерино — компактный адаптивный интерфейс без внешних библиотек */
+:root{--ink:#101820;--ink-2:#1b2935;--paper:#f4f6f7;--white:#fff;--signal:#ffcc45;--signal-d:#f0b820;--mute:#65717b;--line:#dce2e6;--h:60px;--font:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--h) + 10px);-webkit-text-size-adjust:100%}
+body{margin:0;font:400 16px/1.55 var(--font);color:var(--ink);background:var(--white);overflow-x:hidden}
+a{color:inherit}h1,h2,h3{line-height:1.15;margin:0;font-weight:800;letter-spacing:-.03em}h1{font-size:clamp(1.45rem,3.8vw,2.2rem);max-width:28ch}h2{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:18px}h3{font-size:1.05rem;letter-spacing:-.02em}p{margin:0}
+.wrap{width:min(1000px,100% - 36px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}button{-webkit-tap-highlight-color:transparent}button:focus:not(:focus-visible){outline:none}
+
+.header{position:sticky;top:0;z-index:50;background:rgba(16,24,32,.96);backdrop-filter:blur(12px);color:var(--white);height:var(--h);border-bottom:1px solid #34404a}
+.header__in{display:flex;align-items:center;justify-content:space-between;height:100%;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:.98rem;white-space:nowrap}
+.brand__mark{width:9px;height:28px;background:linear-gradient(var(--signal) 0 24%,transparent 24% 37%,var(--signal) 37% 61%,transparent 61% 74%,var(--signal) 74%);border-radius:2px}
+.nav{display:flex;align-items:center;gap:20px}.nav a{text-decoration:none;font-size:.92rem;font-weight:650;color:#e0e5e9}.nav a:hover{color:var(--signal)}.nav .nav__tel{font-weight:800;color:#fff;white-space:nowrap}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:10px 16px;font:750 .95rem/1.2 var(--font);text-decoration:none;text-align:center;border:1px solid transparent;border-radius:10px;cursor:pointer;transition:background .18s,color .18s,border-color .18s,transform .18s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:none}
+.btn--accent{background:var(--signal);color:var(--ink)}.btn--accent:hover{background:var(--signal-d)}
+.btn--dark{background:var(--ink);color:var(--white)}.btn--dark:hover{background:#263542}
+.btn--line{border-color:#697781;color:#fff;background:transparent}.btn--line:hover{background:#fff;color:var(--ink);border-color:#fff}
+
+.hero{background:linear-gradient(125deg,#101820,#17232d 70%,#202e38);color:var(--white);padding:26px 0 30px;position:relative}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:repeating-linear-gradient(90deg,var(--signal) 0 40px,transparent 40px 64px)}
+.lead{margin-top:8px;color:#c8d1d7;font-size:.9rem}
+.status{display:inline-flex;align-items:center;gap:7px;margin-left:6px;font-weight:700;color:#e6edf0;white-space:nowrap}.status[hidden]{display:none}
+.status__dot{width:9px;height:9px;border-radius:50%;background:#87919a}.status.is-open .status__dot{background:#56d68b;box-shadow:0 0 0 4px #56d68b22}
+
+/* 4 кнопки: та же общая ширина, что была у двух, поэтому каждая вдвое уже */
+.quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:min(560px,100%);margin-top:16px}
+.quick .btn{min-height:44px;padding:8px 10px;font-size:.84rem;border-radius:9px;line-height:1.2}
+.btn--tow{position:relative;overflow:hidden;background:var(--ink-2);border-color:var(--signal);color:var(--signal);padding:7px 8px 18px}
+.btn--tow:hover{background:var(--signal);color:var(--ink);border-color:var(--signal)}
+.tow__label{position:relative;z-index:1}
+.tow__truck{position:absolute;bottom:3px;left:6px;animation:drive 5s ease-in-out infinite;will-change:left,transform}
+.btn--tow::after{content:"";position:absolute;left:6px;right:6px;bottom:2px;border-top:2px dashed currentColor;opacity:.35}
+@keyframes drive{0%{left:6px;transform:scaleX(1)}46%{left:calc(100% - 42px);transform:scaleX(1)}50%{left:calc(100% - 42px);transform:scaleX(-1)}96%{left:6px;transform:scaleX(-1)}100%{left:6px;transform:scaleX(1)}}
+
+.section{padding:30px 0}.section--tint{background:var(--paper)}
+.services{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.services li{border:1px solid var(--line);border-top:3px solid var(--signal);border-radius:10px;padding:13px}
+.services p{margin-top:6px;color:var(--mute);font-size:.92rem;line-height:1.4}
+.note{margin-top:16px;color:var(--mute);font-size:.92rem}
+.facts{margin:0 0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;border-top:2px solid var(--ink);padding-top:14px}
+.facts dt{font-size:.74rem;color:var(--mute);text-transform:uppercase;letter-spacing:.09em;font-weight:750;margin-bottom:2px}.facts dd{margin:0;font-weight:650}.facts a{text-decoration:none;font-weight:800}
+.footer{background:#0b1116;color:#aab5bc;padding:20px 0;font-size:.88rem}
+
+/* Чат */
+.chat{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.chat__fab{position:relative;width:58px;height:58px;border-radius:50%;border:0;background:var(--signal);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px #0004;transition:transform .18s}.chat__fab:hover{transform:scale(1.07)}
+.chat__badge{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:#e5484d;color:#fff;font:700 .75rem/22px var(--font);text-align:center}.chat__badge[hidden]{display:none}
+.chat__panel{width:min(350px,calc(100vw - 32px));height:min(480px,calc(100dvh - 110px));background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 50px #0004;display:flex;flex-direction:column;overflow:hidden}.chat__panel[hidden]{display:none}
+.chat__head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--ink);color:#fff}
+.chat__close{background:none;border:0;color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;width:36px;height:36px}
+.chat__start{display:flex;flex-direction:column;gap:10px;padding:16px}.chat__start[hidden],.chat__body[hidden]{display:none}.chat__start p{color:var(--mute);font-size:.92rem}
+.chat input{font:inherit;font-size:16px;padding:11px 12px;border:1px solid #c5cdd3;border-radius:9px;min-width:0;width:100%}
+.chat__body{display:flex;flex-direction:column;flex:1;min-height:0}
+.chat__list{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--paper)}
+.msg{max-width:82%;padding:8px 12px;border-radius:12px;font-size:.93rem;line-height:1.4;overflow-wrap:anywhere;white-space:pre-wrap}
+.msg--client{align-self:flex-end;background:var(--signal);border-bottom-right-radius:3px}.msg--staff{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:3px}
+.chat__err{margin:0;padding:6px 12px;font-size:.82rem;color:#b3261e;background:#fdecea}.chat__err[hidden]{display:none}
+.chat__form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:#fff}
+.chat__send{flex:none;width:46px;border:0;border-radius:9px;background:var(--ink);color:var(--signal);font-size:1.1rem;cursor:pointer}
+
+@media(max-width:700px){.services{grid-template-columns:repeat(2,minmax(0,1fr))}.services h3{font-size:.96rem}.facts{grid-template-columns:1fr;gap:12px}.nav__link{display:none}.hero{padding:22px 0 26px}.wrap{width:min(100% - 28px,1000px)}}
+@media(max-width:480px){.brand__sub{display:none}.nav__tel{font-size:.82rem}.quick{gap:7px;margin-top:14px}.quick .btn{min-height:42px;font-size:.78rem;padding:7px 6px}.tow__truck{width:30px;height:15px}.hero h1{font-size:1.55rem;max-width:24ch}.lead{font-size:.84rem;line-height:1.45}.chat__fab{width:52px;height:52px}.chat__panel{height:min(440px,calc(100dvh - 90px))}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.chat__fab{transition:none}.tow__truck{animation:none}}
+
+
+/* FIX 2026-10-26: явная стилизация окна чата для мобильных браузеров */
+.chat{position:fixed!important;right:12px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;left:auto!important;top:auto!important;z-index:9999!important;align-items:flex-end!important;pointer-events:none}
+.chat__fab,.chat__panel{pointer-events:auto}
+.chat__panel{width:min(360px,calc(100vw - 24px))!important;height:min(500px,calc(100dvh - 110px))!important;min-height:0!important;display:flex;flex-direction:column;background:#fff!important;color:var(--ink)!important;border:1px solid #dce2e6!important;border-radius:16px!important;box-shadow:0 16px 48px #0004!important;overflow:hidden!important;margin:0!important}
+.chat__panel[hidden],.chat__start[hidden],.chat__body[hidden],.chat__err[hidden],.chat__badge[hidden]{display:none!important}
+.chat__head{flex:0 0 auto;min-height:54px;padding:10px 14px!important;display:flex!important;align-items:center;justify-content:space-between;background:#101820!important;color:#fff!important;font-size:15px!important}
+.chat__close{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:8px;background:#263542;color:#fff;font-size:24px;line-height:1}
+.chat__start{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:14px!important;background:#fff}
+.chat__body{flex:1;min-height:0;display:flex;flex-direction:column;background:#f4f6f7}
+.chat__list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:12px!important;gap:8px!important}
+.chat .msg{max-width:85%;padding:9px 12px!important;border-radius:13px!important;font-size:14px!important;line-height:1.4!important;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat .msg--client{align-self:flex-end;background:#ffcc45!important;color:#101820!important;border-bottom-right-radius:4px!important}
+.chat .msg--staff{align-self:flex-start;background:#fff!important;color:#101820!important;border:1px solid #dce2e6!important;border-bottom-left-radius:4px!important}
+.chat__form{display:flex!important;flex:0 0 auto;gap:8px;padding:10px!important;background:#fff!important;border-top:1px solid #dce2e6!important}
+.chat__form input{flex:1;min-width:0;width:0;font-size:16px!important;border-radius:10px!important;padding:10px 12px!important}
+.chat__send{width:44px!important;min-width:44px;height:44px;border:0!important;border-radius:10px!important;background:#101820!important;color:#ffcc45!important;font-size:20px!important}
+.chat__fab{width:54px!important;height:54px!important;display:grid!important;place-items:center;border:0!important;border-radius:50%!important;background:#ffcc45!important;color:#101820!important;box-shadow:0 8px 24px #0004!important}
+.btn--tow{min-height:54px!important;padding:8px 8px 23px!important}
+.tow__truck{display:block!important;width:42px!important;height:21px!important;bottom:1px!important;left:6px;animation:drive 3.2s linear infinite!important;will-change:left,transform}
+@keyframes drive{0%{left:6px;transform:scaleX(1)}45%{left:calc(100% - 48px);transform:scaleX(1)}50%{left:calc(100% - 48px);transform:scaleX(-1)}95%{left:6px;transform:scaleX(-1)}100%{left:6px;transform:scaleX(1)}}
+@media(max-width:480px){.chat{right:10px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important}.chat__panel{width:calc(100vw - 20px)!important;height:min(470px,calc(100dvh - 90px))!important}.tow__truck{width:38px!important;height:19px!important}}
+@media(prefers-reduced-motion:reduce){.tow__truck{animation:drive 5s linear infinite!important}}
+
+
+/* Ненавязчивое мерцание и пульсация кнопки чата, привлекающие внимание. */
+.chat__fab {
+  animation: chatAttention 1.8s ease-in-out infinite !important;
+  transform-origin: center;
+}
+.chat__fab::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 2px solid #ffcc45;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: chatRing 1.8s ease-out infinite;
+}
+@keyframes chatAttention {
+  0%, 100% { filter: brightness(1); box-shadow: 0 8px 24px #0004, 0 0 0 0 #ffcc4570; }
+  50% { filter: brightness(1.18); box-shadow: 0 8px 24px #0004, 0 0 0 7px #ffcc4526; }
+}
+@keyframes chatRing {
+  0% { transform: scale(.92); opacity: .8; }
+  75%, 100% { transform: scale(1.35); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat__fab, .chat__fab::before { animation: none !important; }
+}
+
+
+/* Усиленное мерцание кнопки чата: яркая пульсация, подпрыгивание и несколько колец. */
+.chat__fab {
+  animation: chatAttentionStrong .82s ease-in-out infinite !important;
+  isolation: isolate;
+  will-change: transform, filter, box-shadow;
+}
+.chat__fab::before {
+  inset: -7px !important;
+  border: 3px solid #ffcc45 !important;
+  box-shadow: 0 0 12px #ffcc45, inset 0 0 8px #ffcc4580;
+  animation: chatRingStrong 1.15s ease-out infinite !important;
+}
+.chat__fab::after {
+  content: "";
+  position: absolute;
+  inset: -13px;
+  border: 2px solid #ff8a00;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  animation: chatRingStrong 1.15s .38s ease-out infinite;
+}
+@keyframes chatAttentionStrong {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+    box-shadow: 0 8px 24px #0005, 0 0 0 0 #ffcc4580, 0 0 10px #ffcc45;
+  }
+  25% {
+    transform: scale(1.09);
+    filter: brightness(1.65);
+    box-shadow: 0 8px 24px #0005, 0 0 0 7px #ffcc4560, 0 0 25px #ffcc45;
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(.9);
+    box-shadow: 0 8px 24px #0005, 0 0 0 2px #ff8a0080, 0 0 8px #ff8a00;
+  }
+  75% {
+    transform: scale(1.11);
+    filter: brightness(1.8);
+    box-shadow: 0 8px 24px #0005, 0 0 0 9px #ffcc454d, 0 0 30px #ffcc45;
+  }
+}
+@keyframes chatRingStrong {
+  0% { transform: scale(.78); opacity: .95; }
+  70%, 100% { transform: scale(1.55); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat__fab, .chat__fab::before, .chat__fab::after { animation: none !important; }
+}
